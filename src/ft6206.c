@@ -135,7 +135,7 @@ static rt_err_t ft6206_control(struct rt_touch_device *device, int cmd, void *da
         }
     }
 
-    return RT_EOK;
+    return -RT_ERROR;
 }
 
 static rt_size_t ft6206_read_point(struct rt_touch_device *touch, void *buf, rt_size_t read_num)
