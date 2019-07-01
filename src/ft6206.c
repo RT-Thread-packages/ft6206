@@ -22,7 +22,6 @@
 static struct rt_i2c_client *ft6206_client;
 
 static void ft6206_write_reg(struct rt_i2c_client *dev,
-                             struct rt_i2c_bus_device *i2c_bus,
                              rt_uint8_t addr,
                              rt_uint8_t *buffer,
                              rt_size_t length)
@@ -89,6 +88,7 @@ static int ft6206_read_reg(struct rt_i2c_client *dev,
     return ret;
 }
 
+/* Universal adaptation will be done soon */
 static rt_err_t ft6206_get_info(struct rt_i2c_client *dev, struct rt_touch_info *info)
 {
     info->range_x = 800;
@@ -98,6 +98,7 @@ static rt_err_t ft6206_get_info(struct rt_i2c_client *dev, struct rt_touch_info 
     return RT_EOK;
 }
 
+/* Support will be forthcoming */
 static rt_err_t ft6206_control(struct rt_touch_device *device, int cmd, void *data)
 {
     if (cmd == RT_TOUCH_CTRL_GET_ID)
@@ -169,12 +170,13 @@ static rt_size_t ft6206_read_point(struct rt_touch_device *touch, void *buf, rt_
     }
 
     read_data[0].timestamp = rt_touch_get_ts();
+    /* Width information acquisition is about to be realized */
     read_data[0].width = 1;
     read_data[0].x_coordinate = (point[2]&0x0F) << 8 | point[3];
     read_data[0].y_coordinate = (point[0]&0x0F) << 8 | point[1];
     read_data[0].track_id = 0;
 		
-		LOG_D("%d %d", read_data[0].x_coordinate, read_data[0].y_coordinate);
+    LOG_D("%d %d", read_data[0].x_coordinate, read_data[0].y_coordinate);
     
     if (s_tp_down)
     {
