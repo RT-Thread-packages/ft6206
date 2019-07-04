@@ -15,9 +15,12 @@
 
 #define DBG_TAG "ft6206"
 #define DBG_LVL DBG_INFO
+
 #include <rtdbg.h>
 
-#define IIC_RETRY_NUM 2
+#define IIC_RETRY_NUM        2
+#define TD_STATUS            0x20
+#define FT6206_CLIENT_ADDR   0x2A
 
 static struct rt_i2c_client *ft6206_client;
 
@@ -145,7 +148,7 @@ static rt_size_t ft6206_read_point(struct rt_touch_device *touch, void *buf, rt_
     static uint8_t s_tp_down = 0;
     struct rt_touch_data *read_data = (struct rt_touch_data *)buf;
     uint8_t point[6];
-    ret = ft6206_read_reg(ft6206_client, 0x02, &point_num, 1);
+    ret = ft6206_read_reg(ft6206_client, TD_STATUS, &point_num, 1);
     if (ret < 0)
     {
         return 0;
@@ -216,7 +219,7 @@ int rt_hw_ft6206_init(const char *name, struct rt_touch_config *cfg)
         return -RT_ERROR;
     }
 
-    ft6206_client->client_addr = 0x2A;
+    ft6206_client->client_addr = FT6206_CLIENT_ADDR;
 
     /* register touch device */
     touch_device->info.type = RT_TOUCH_TYPE_CAPACITANCE;
