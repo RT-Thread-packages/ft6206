@@ -95,7 +95,7 @@ int ft6206_sample(const char *name, rt_uint16_t x, rt_uint16_t y)
         return -1;
     }
 
-    ft6206_thread = rt_thread_create("ft6206_sample_thread",
+    ft6206_thread = rt_thread_create("ft6206",
                                      ft6206_entry,
                                      RT_NULL,
                                      THREAD_STACK_SIZE,
