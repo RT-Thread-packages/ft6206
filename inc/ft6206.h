@@ -11,7 +11,7 @@
 #ifndef _FT6206_H_
 #define _FT6206_H_
 
-#include "touch.h"
+#include <touch.h>
 
 int rt_hw_ft6206_init(const char *name, struct rt_touch_config *cfg);
 
