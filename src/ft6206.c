@@ -19,7 +19,7 @@
 #include <rtdbg.h>
 
 #define IIC_RETRY_NUM        2
-#define TD_STATUS            0x20
+#define TD_STATUS            0x02
 #define FT6206_CLIENT_ADDR   0x2A
 
 static struct rt_i2c_client *ft6206_client;
